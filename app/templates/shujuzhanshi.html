@@ -1,0 +1,149 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+    </div>
+    <div class="col-lg-12" style="margin-top: 10px">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">统计列表</div>
+
+            <!-- Table -->
+            <table class="table">
+                <tr>
+
+                    <td>总金额</td>
+                    <td>总支用</td>
+                    <td>总提货量</td>
+                    <td>总余额</td>
+                    <td>总利润</td>
+
+
+                    <td>今日支用</td>
+                    <td>今日提货量</td>
+
+
+                </tr>
+
+                <tbody>
+                <tr>
+                    <td>{{ data.总授信 }}</td>
+
+                    <td>{{ data.总支用 }}</td>
+                    <td>{{ data.总提货量 }}</td>
+                    <td>{{ data.总余额 }} </td>
+                    <td>{{ data.总利润 }} </td>
+
+                    <td>{{ data.今日支用 }}</td>
+                    <td>{{ data.今日提货量 }}</td>
+
+
+                </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+    <div style="height: 50px"></div>
+
+    <div class="col-lg-12" style="margin-top: 10px">
+        <div class="panel panel-default">
+            <div class="panel-heading">今日卖苗客户</div>
+
+            <!-- Table -->
+            <table class="table">
+                <tr>
+{#                    <td>id</td>#}
+                    <td>姓名</td>
+                    <td>初始规模</td>
+                    <td>上苗数量</td>
+                    <td>理论提货量</td>
+                    <td>上苗日期</td>
+                    <td>卖苗日期</td>
+
+
+                </tr>
+                {% for dat in data1 %}
+                    <tbody>
+                    <tr>
+{#                        <td>{{ dat.id }}</td>#}
+                        <td>{{ dat.xingming }}</td>
+                        <td>{{ dat.hezuo_guimo }}</td>
+                        <td>{{ dat.shangmiao_count }}</td>
+                        <td>{{ dat.lilun_count }}</td>
+
+                        <td>{{ dat.shangmiao_date|date:'Y-m-d' }}</td>
+                        <td>{{ dat.maimiao_date|date:'Y-m-d' }}</td>
+
+
+                    </tr>
+                    </tbody>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+    <div class="col-lg-12" style="margin-top: 10px">
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+
+            $(function () {
+                initBar()
+            });
+
+            function initBar() {
+                var myChart = echarts.init(document.getElementById('main'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['销量', '金额']
+                    },
+                    xAxis: {
+                        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+                    },
+                    yAxis: {},
+                    series: []
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                {#myChart.setOption(option);#}
+
+
+            $.ajax({
+                url: '/shuju/tu/',
+                type: 'get',
+                dataType: 'JSON',
+                success: function (res) {
+                    if (res.status) {
+                        option.legend.data = res.data.legend;
+                        option.xAxis.data = res.data.x_axis;
+                        option.series = res.data.series_list;
+
+                        myChart.setOption(option);
+                    }
+
+
+                }
+            })
+            }
+
+        </script>
+
+    </div>
+
+
+    </div>
+
+
+
+
+{% endblock %}
+

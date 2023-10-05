@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+<form method="post">
+    {% csrf_token %}
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+         <div class="panel panel-default">
+      <div class="panel-heading">创建</div>
+      <div class="panel-body" >
+        {% for field in list_name %}
+
+            {{ field.label }}:{{ field }}
+            <span>{{ field.errors.0 }}</span>
+
+        {% endfor %}
+      </div>
+
+
+    <div class="btn-group btn-group-lg" role="group" aria-label="..." style="margin-left:40%">
+        <button type="submit" class="btn btn-default">提交</button>
+    </div>
+
+
+
+    </div>
+    </div>
+    <div class="col-lg-3"></div>
+
+
+</form>
+
+
+{% endblock %}

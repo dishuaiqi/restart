@@ -1,0 +1,62 @@
+.main {
+  margin-top: 9.6rem;
+  display: flex;
+  align-items: center;
+  gap: 15rem;
+}
+
+.left-box {
+}
+
+.backgr-img {
+  height: 36rem;
+  border-radius: 12px;
+}
+
+.right-box {
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.text--3 {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.text--4 {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.submit-btn {
+  background-color: #fff6e6;
+  border: none;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-radius: 12px;
+  color: #ffaa1a;
+  width: 20rem;
+  margin-left: 11rem;
+  margin-top: 1.2rem;
+  cursor: pointer;
+}
+
+.label--1 {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.input--1 {
+  width: 28rem;
+  height: 3.6rem;
+  border-radius: 12px;
+  border: 1px solid #bdbdbd;
+  outline-color: #00bcd4;
+  padding: 1.2rem;
+}

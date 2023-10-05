@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <form method="get">
+    <div class="col-lg-3">
+        <div class="input-group">
+{#          <span>客户名称</span>#}
+          <input type="text" class="form-control" placeholder="搜索客户名称..." name="q1">
+          <span class="input-group-btn">
+            <button class="btn btn-default">客户名称</button>
+          </span>
+        </div><!-- /input-group -->
+    </div>
+
+     <div class="col-lg-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="搜索客户种类..." name="q2">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">客户种类</button>
+          </span>
+        </div><!-- /input-group -->
+    </div>
+
+     <div class="col-lg-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="搜索客户地区..." name="q3">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">客户地区</button>
+          </span>
+        </div><!-- /input-group -->
+    </div>
+
+    <div class="col-lg-3">
+         <button class="btn btn-default" type="submit" style="color: red">
+             查询
+         </button>
+         <button class="btn btn-default" type="button">重置</button>
+    </div>
+
+    </form>
+<div class="col-lg-3" style="margin-top: 10px">
+
+       <a  class="btn btn-success" href="/user/add/">新建</a>
+
+
+</div>
+    <div class="col-lg-12" style="margin-top: 10px">
+    <div class="panel panel-default">
+  <!-- Default panel contents -->
+      <div class="panel-heading">客户列表</div>
+
+      <!-- Table -->
+      <table class="table">
+        <tr>
+{#                <td>id</td>#}
+                <td>姓名</td>
+                <td>客户种类</td>
+                <td>区域</td>
+                <td>授信日期</td>
+                <td>授信额度</td>
+                <td>使用额度</td>
+                <td>提货金额</td>
+                <td>利润</td>
+                <td>操作</td>
+            </tr>
+            {% for dat in data %}
+               <tbody>
+                <tr>
+{#                    <td>{{ dat.id }}</td>#}
+                    <td>{{ dat.name }}</td>
+                    <td>{{ dat.type }}</td>
+                    <td>{{ dat.area }}</td>
+                    <td>{{ dat.credit_date|date:'Y-m-d' }}</td>
+                    <td>{{ dat.credit }}</td>
+                    <td>{{ dat.use_credit }}</td>
+                    <td>{{ dat.use_credit}}</td>
+                    <td>{{ dat.lirun }}</td>
+
+
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="/user/edit/?nid={{ dat.id }}">编辑</a>
+                        <a class="btn btn-danger btn-xs" href="/user/delete/?nid={{ dat.id }}">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+
+      </table>
+    </div>
+    </div>
+{% endblock %}

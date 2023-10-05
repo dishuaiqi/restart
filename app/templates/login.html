@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/loginStyle.css' %}" />
+    <title>登录</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#"><img src="{% static 'images/logtuo.png' %}" alt="Logo" class="logo" /></a>
+      <div class="login-box">
+        <span class="text--1"></span>
+        <a href="register.html" class="sign-in-btn">注册</a>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="left-box">
+        <img src="{% static 'images/beijing.jpg' %}" alt="background-image" class="backgr-img" />
+      </div>
+      <div class="right-box">
+        <form method="post" action="/login/" class="form">
+            {% csrf_token %}
+          <label for="" class="label--1">
+            <span class="text--3">用户姓名:</span
+            ><input type="text" name="username" class="input--1" />
+          </label>
+          <label for="" class="label--1">
+            <span class="text--4">登录密码:</span><input type="password" name="pwd" class="input--1" />
+            <span style="color: red">{{ error_message }}</span>
+          </label>
+          <input type="submit" class="submit-btn" />
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

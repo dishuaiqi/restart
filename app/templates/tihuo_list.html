@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <form method="get">
+    <div class="col-lg-3">
+        <div class="input-group">
+{#          <span>客户名称</span>#}
+          <input type="text" class="form-control" placeholder="搜索客户名称..." name="q1">
+          <span class="input-group-btn">
+            <button class="btn btn-default">客户名称</button>
+          </span>
+        </div><!-- /input-group -->
+    </div>
+    <div class="col-lg-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="日期..." name="q2">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">开始日期</button>
+          </span>
+        </div><!-- /input-group -->
+    </div>
+    <div class="col-lg-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="日期..." name="q3">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">截止日期</button>
+          </span>
+        </div><!-- /input-group -->
+    </div>
+
+
+    <div class="col-lg-3">
+         <button class="btn btn-default" type="submit" style="color: red">
+             查询
+         </button>
+         <button class="btn btn-default" type="button">重置</button>
+    </div>
+
+    </form>
+
+
+
+<div class="col-lg-12" style="margin-top: 10px">
+
+   <a class="btn btn-success" href="/tihuo/zhanshi/add/">新建</a>
+
+
+</div>
+    <div class="col-lg-12" style="margin-top: 10px">
+    <div class="panel panel-default">
+  <!-- Default panel contents -->
+      <div class="panel-heading">统计列表</div>
+
+      <!-- Table -->
+      <table class="table">
+        <tr>
+{#                <td>id</td>#}
+                <td>姓名</td>
+                <td>支用金额</td>
+                <td>提货量</td>
+                <td>提货日期</td>
+
+
+
+
+                <td> 操作</td>
+            </tr>
+            {% for dat in data %}
+               <tbody>
+                <tr>
+{#                    <td>{{ dat.id }}</td>#}
+                    <td>{{ dat.ren }}</td>
+                    <td>{{ dat.today_use }}</td>
+
+                    <td>{{ dat.today_siliao }}</td>
+                    <td>{{ dat.today|date:'Y-m-d' }}</td>
+
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="/tihuo/zhanshi/edit/?nid={{ dat.id }}">编辑</a>
+                        <a class="btn btn-danger btn-xs" href="/tihuo/zhanshi/delete/?nid={{ dat.id }}">删除</a>
+                    </td>
+                </tr>
+
+            </tbody>
+            {% endfor %}
+           <tr>
+
+                <td>总计</td>
+
+
+                 <td>{{ all_use }}</td>
+                 <td>{{ all_tihuo }}</td>
+                 <td>/</td>
+                 <td>/</td>
+             </tr>
+
+      </table>
+    </div>
+    </div>
+{% endblock %}
+
+
+
